@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+  font-style: italic;
+  margin: 0 auto;
+  border: 3.75px solid #515a5a;
+  border-radius: 8px;
+  width: 25%;
+  margin-top: 25px;
+}
+.App-header {
+  background-color: #117864;
+  height: 100px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+input {
+  margin-top: 25px;
+  border-radius: 6px;
+}
+
+li {
+  margin-right: 55px;
+  font-size: 20px;
+  list-style: none;
+  border-bottom: 1px solid #dfe6ee;
+  margin-top: 25px;
+}
+
+button {
+  border-radius: 4px;
+}
