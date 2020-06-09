@@ -1,10 +1,9 @@
 .App {
   text-align: center;
-  font-style: italic;
   margin: 0 auto;
   border: 3.75px solid #515a5a;
   border-radius: 8px;
-  width: 25%;
+  width: 45%;
   margin-top: 25px;
 }
 .App-header {
@@ -14,13 +13,25 @@
   color: white;
 }
 
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 .App-intro {
   font-size: large;
 }
 
 input {
-  margin-top: 25px;
+  margin-bottom: 25px;
   border-radius: 6px;
+}
+
+#addBtn {
+  margin-left: 10px;
 }
 
 li {
@@ -33,4 +44,12 @@ li {
 
 button {
   border-radius: 4px;
+}
+
+li > label {
+  margin-left: 13px;
+}
+
+li > button {
+  margin-left: 25px;
 }
