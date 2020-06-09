@@ -12,15 +12,6 @@
   padding: 20px;
   color: white;
 }
-
-.hidden {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
 .App-intro {
   font-size: large;
 }
@@ -44,10 +35,7 @@ li {
 
 button {
   border-radius: 4px;
-}
-
-li > label {
-  margin-left: 13px;
+  margin-left: 25px;
 }
 
 li > button {

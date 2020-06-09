@@ -5,7 +5,6 @@ import "./App.css";
 
 class App extends Component {
 	state = {
-		isEditMode:false,
 		todos: [],
 	};
 	handleInputValue = (event) => {
@@ -14,28 +13,39 @@ class App extends Component {
 	addItem = () => {
 		let {inputValue, todos, id} = this.state
 		this.setState({todos: [...todos, {inputValue, id}]})
+
 	}
 	deleteItem = (todoID) => {
 		const todos = this.state.todos.filter((item => item.id !== todoID))
 		this.setState({todos})
 	}
-	editItem = () => {
-		this.setState({
-			isEditMode: !this.state.isEditMode
-		})
-	}
+
+	editItem = (todoID) => {
+		const todos = this.state.todos.forEach((item => item.id === todoID))
+		console.log('-----todo',todos)
+
+	};
 
 	render() {
-		return (
+		return <div className={"App"}>
+			<div className="App-header">
+				<h2>Welcome to To-Do List App</h2>
+			</div>
+			<input onChange={this.handleInputValue} name={''} type='text'/>
+			<button onClick={() => this.addItem()} className={'btn btn-primary'}>Add</button>
+			<ul>
+				{
+					this.state.todos.map(todoItem => <ListItem
+						key={todoItem.id}
+						todoItem={todoItem}
+						deleteItem={this.deleteItem}
+						editItem = {this.editItem}
+					/>)
+				}
+			</ul>
 
-			<ListItem
-				todos={this.state.todos}
-				addItem={this.addItem}
-				handleInputValue = {this.handleInputValue}
-				deleteItem={this.deleteItem}
-				editItem = {this.editItem}/>
-		)
-	}
+		</div>
+	};
 }
 
 export default App;
