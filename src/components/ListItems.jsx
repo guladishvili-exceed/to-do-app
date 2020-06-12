@@ -11,8 +11,7 @@ class itemList extends Component {
 		const {isEditMode} = this.state;
 		const {todoItem, submitEdit, deleteItem} = this.props;
 
-		return <div>
-			<li>
+		return <li>
 				{
 					isEditMode ? (
 						<div>
@@ -22,7 +21,7 @@ class itemList extends Component {
 							/>
 							<button
 								onClick={() => {
-									submitEdit(todoItem.id, this.inputRef.current.value);
+									submitEdit(todoItem._id, this.inputRef.current.value);
 									this.setState({isEditMode: !isEditMode});
 								}}
 								className={'btn btn-primary'}
@@ -41,17 +40,18 @@ class itemList extends Component {
 						<div>
 							<input type={'checkbox'}/>
 							<label>
-								{todoItem.inputValue}
+								{todoItem.todo}
 							</label>
-							<button onClick={() => deleteItem(todoItem.id)} className={'btn btn-primary'}>Delete
+							<button onClick={() => {
+								deleteItem(todoItem._id)
+							} } className={'btn btn-primary'}>Delete
 							</button>
 							<button onClick={() => this.setState({isEditMode: !isEditMode})} className={'btn btn-primary'}>Edit
 							</button>
-						</div>
+							</div>
 					)
 				}
-			</li>
-		</div>
+		</li>
 
 	}
 
