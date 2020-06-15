@@ -1,23 +1,58 @@
 .App {
   text-align: center;
   margin: 0 auto;
-  border: 3.75px solid #515a5a;
-  border-radius: 8px;
   width: 45%;
-  margin-top: 25px;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 .App-header {
   background-color: #117864;
-  height: 100px;
+  height: 175px;
+  border: 3.75px solid #515a5a;
+  border-radius: 8px;
   padding: 20px;
   color: white;
 }
+
 .App-intro {
   font-size: large;
 }
+.App > input {
+  margin-left: 17px;
+  margin-top: 25px;
+}
+
+.App >  button {
+  margin-left: 10px;
+  margin-right: 25px;
+  margin-bottom: 10px;
+}
+
+.App > li > button {
+  margin-right: 15px;
+}
+
+
+#registration {
+  margin: 0 auto;
+  align-content: center;
+  text-align: center;
+  width: 30%;
+}
+
+#registration > input {
+  margin-top: 30px;
+}
+
+#registration > button  {
+  margin-top: 20px;
+}
+
+#registration > p  {
+  margin-top: 40px;
+}
+
 
 input {
-  margin-bottom: 25px;
   border-radius: 6px;
 }
 
@@ -35,9 +70,5 @@ li {
 
 button {
   border-radius: 4px;
-  margin-left: 25px;
-}
-
-li > button {
   margin-left: 25px;
 }
