@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import axios from "axios";
-
+import { withRouter } from "react-router-dom";
 class Login extends Component {
 	state = {
 		username:'',
-		password:''
+		password:'',
 	}
 
 	handleInputValue = (event) => {
@@ -26,6 +26,10 @@ class Login extends Component {
 					password: password,
 				})
 				.then((res) => {
+					this.setState({username: username,password: password})
+					localStorage.setItem('username',this.state.username)
+					this.props.history.push("/todoapp");
+					console.log(this.state.username)
 					console.log('res',res)
 				})
 				.catch((err) => {
@@ -42,18 +46,20 @@ class Login extends Component {
 		}
 	}
 
+
+
 	render() {
 		return <div id={'registration'}>
 			<p>Enter your Username</p>
 			<input onKeyPress={this.handleKeyPress} onChange={(event) => this.handleInputValue(event)} type={'text'} placeholder={'Enter your Username'}/>
 			<p>Enter your Password</p>
 			<input onKeyPress={this.handleKeyPress} onChange={(event) => this.handlePasswordValue(event)} type={'password'} placeholder={'Enter your password '}/>
-			<button onClick={() => this.handleLogIn()} className={'btn btn-info'}>Log in </button>
-		</div>
+			<button onClick={() => {this.handleLogIn()}} className={'btn btn-info'}>Log in </button>
+			</div>
 	}
 }
 
 
 
 
-export default Login;
+export default withRouter(Login);

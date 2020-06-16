@@ -7,6 +7,7 @@ import axios from 'axios'
 
 class ToDoApp extends Component {
 	state = {
+		username:'',
 		inputValue: '',
 		todos: [],
 		currentPage: 1,
@@ -43,11 +44,12 @@ class ToDoApp extends Component {
 		return paging
 	}
 
-	componentDidMount() {
+componentDidMount() {
 		axios
-			.get("http://localhost:8080/")
+			.get(`http://localhost:8080/${localStorage.getItem('username')}`)
 			.then((res) => {
 				this.setState({todos: res.data})
+				console.log('--------res.data', res.data);
 				this.setPageCount()
 			})
 			.catch((err) => {
@@ -55,20 +57,26 @@ class ToDoApp extends Component {
 			});
 	}
 
+
+
 	addItem = () => {
 		let {todos} = this.state
+		let userName = localStorage.getItem('username')
+		console.log('--------userName', userName);
 		if (this.inpRef.current.value === '') {
 			return alert('We dont do that here....')
 		} else {
 			axios
 				.post(`http://localhost:8080/add`, {
+					username: userName,
 					todo: this.inpRef.current.value,
 					checked: false,
 				})
 				.then((res) => {
 					this.setState({
-						todos:[...todos,{todo:res.data.todo,_id:res.data._id,checked:false}]
+						todos:[...todos,{ username:res.data.username,todo:res.data.todo,_id:res.data._id,checked:false}]
 					})
+					console.log('res', res)
 				})
 				.catch((err) => {
 					console.log("err", err);
@@ -76,7 +84,6 @@ class ToDoApp extends Component {
 			this.setPageCount()
 		}
 		this.inpRef.current.value = ''
-		console.log('--------this.state.todos', this.state.todos);
 	}
 	handleKeyPress = (event) => {
 		if (event.key === 'Enter') {
@@ -185,10 +192,7 @@ class ToDoApp extends Component {
 
 
 	render() {
-
-
 		const {itemsPerPage, currentPage, todos} = this.state;
-
 		const end = currentPage * itemsPerPage
 		const start = end - itemsPerPage
 		const currentItems = todos.slice(start, end);
@@ -201,6 +205,7 @@ class ToDoApp extends Component {
 			<button  onClick={() => this.checkAllCheckBox()}
 			         className={'btn btn-primary'}>{this.state.todos.some(todo => todo.checked) ? "Uncheck All" : "Check All"}</button>
 			<button onClick={() => {this.deleteAllChecked()}} className={'btn btn-primary'}>Delete Checked</button>
+
 			<ul>
 				{
 					currentItems.map(todoItem => {
@@ -212,6 +217,7 @@ class ToDoApp extends Component {
 							submitEdit={this.submitEdit}
 							checkSingleCheckBox = {this.checkSingleCheckBox}
 						/>
+
 					})
 				}
 				<div>

@@ -11,8 +11,8 @@ class registration extends Component {
 
 	handleRegistration = () => {
 
-		if (this.state.password !== this.state.confirmPassword || this.state.password.length === 0) {
-			alert('Fix the password stuff!')
+		if (this.state.password !== this.state.confirmPassword || this.state.password.length === 0 || this.state.username.length === 0) {
+			alert('Cofirmation password must match password you entered,Password field cant be empty,User field cant be empty ')
 		} else {
 			axios
 				.post(`http://localhost:8080/addUser`, {
@@ -20,9 +20,11 @@ class registration extends Component {
 						password: this.state.password,
 				})
 				.then((res) => {
+					alert('Registration went succesful')
 					console.log('res',res)
 					})
 				.catch((err) => {
+					alert('Username is taken')
 					console.log("err", err);
 				});
 		}
