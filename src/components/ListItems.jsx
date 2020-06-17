@@ -1,13 +1,14 @@
 import React, {Component, createRef} from "react";
 
-
 class itemList extends Component {
 	state = {
 		isEditMode: false
 	}
 	inputRef = createRef();
 	btnRef = createRef();
-
+	handleChange = (event) => {
+		this.setState({input:event.currentTarget.value})
+	}
 	render() {
 		const {isEditMode} = this.state;
 		const {todoItem, submitEdit, deleteItem} = this.props;
@@ -18,12 +19,13 @@ class itemList extends Component {
 					<div>
 						<input
 							ref={this.inputRef}
-							defaultValue={todoItem.inputValue} type={'text'}
+							type={'text'}
+						  defaultValue={todoItem.todo}
 						/>
 						<button
 							onClick={() => {
 								submitEdit(todoItem._id, this.inputRef.current.value);
-								this.setState({isEditMode: !isEditMode});
+								this.setState({isEditMode: !isEditMode})
 							}}
 							className={'btn btn-primary'}
 						>
@@ -39,7 +41,7 @@ class itemList extends Component {
 					</div>
 				) : (
 					<div>
-						<input ref={this.btnRef} onClick={() => this.props.checkSingleCheckBox(todoItem._id)} type={'checkbox'} checked={todoItem.checked}/>
+						<input ref={this.btnRef} onClick={() => this.props.checkSingleCheckBox(todoItem._id,todoItem.checked)} type={'checkbox'} checked={todoItem.checked}/>
 						<label>
 							{todoItem.todo}
 						</label>
