@@ -47,4 +47,34 @@ export const checkAll = (checked) => {
 	}
 }
 
+export const deleteAllChecked = () => {
+	return {
+		type:actionTypes.DELETE_CHECKED
+	}
+}
+
+export const setPageCount = () => {
+	return {
+		type:actionTypes.PAGE_COUNT
+	}
+}
+
+export const changePage = (page) => {
+	return {
+		type:actionTypes.CHANGE_PAGE,
+		page
+	}
+}
+
+export const previousPage = () => {
+	return {
+		type:actionTypes.PREVIOUS_PAGE,
+	}
+}
+
+export const nextPage = () => {
+	return {
+		type:actionTypes.NEXT_PAGE
+	}
+}
 
